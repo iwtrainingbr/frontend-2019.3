@@ -1,3 +1,5 @@
+const API_URL = 'https://frontend-2019-3.firebaseio.com';
+
 calendar();
 
 document.getElementById('btn-agenda').addEventListener('click', () => {
@@ -13,7 +15,7 @@ document.getElementById('btn-agenda').addEventListener('click', () => {
 });
 
 document.getElementById('btn-config').addEventListener('click', () => {
-  document.getElementById('main').innerHTML = config();
+  config();
 
   location.assign('#config');
 
