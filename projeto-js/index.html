@@ -14,11 +14,14 @@
         <h1>Minhas Tarefas</h1>
         <hr>
         <div>
-          <button id="btn-agenda" class="btn btn-primary">
+          <button data-action="menu" id="btn-agenda" class="btn btn-primary">
             Agenda
           </button>
-          <button id="btn-config" class="btn btn-outline-primary">
+          <button data-action="menu" id="btn-config" class="btn btn-outline-primary">
             Configurações
+          </button>
+          <button data-action="menu" id="btn-places" class="btn btn-outline-primary">
+            Locais
           </button>
         </div>
 
@@ -34,6 +37,7 @@
     <script src="node_modules/@fullcalendar/daygrid/main.min.js"></script>
     <script src="js/calendar.js"></script>
     <script src="js/config.js"></script>
+    <script src="js/places.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
