@@ -38,10 +38,16 @@ function calendar()
             <select id="form-evento-tipo" class="mt-3 form-control">
               <option selected disabled>-- Tipo --</option>
             </select>
+            <div class="text-right">
+              <button onclick="fecharModal(); config(); $('#btn-novo-tipo').trigger('click');" type="button" class="btn btn-link">Novo Tipo?</button>
+            </div>
 
             <select id="form-evento-local" class="mt-3 form-control">
               <option selected disabled>-- Local --</option>
             </select>
+            <div class="text-right">
+              <button onclick="fecharModal(); places(); $('#btn-novo-local').trigger('click');"  type="button" class="btn btn-link">Novo Local?</button>
+            </div>
 
             <input id="form-evento-inicio" class="mt-3 form-control" placeholder="Hora Inicio">
 
@@ -114,10 +120,17 @@ function calendar()
           end: day+' '+document.getElementById('form-evento-fim').value
         });
 
-        $('#modal-novo-evento').modal('hide');
+        fecharModal();
       }
     });
   });
 
+  $('#form-evento-inicio').timepicker();
+  $('#form-evento-fim').timepicker();
+
   return calendar.render();
+}
+
+function fecharModal() {
+  $('#modal-novo-evento').modal('hide');
 }
