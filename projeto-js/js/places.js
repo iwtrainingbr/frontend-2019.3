@@ -37,7 +37,9 @@ function places()
             <td>${cadaLocal.nome}</td>
             <td>${cadaLocal.endereco}</td>
             <td>${cadaLocal.localizacao}</td>
-            <td></td>
+            <td>
+              <button onclick="excluirLocal('${id}')" class="btn btn-danger">Excluir</button>
+            </td>
           </tr>
         `;
       }
@@ -86,4 +88,17 @@ function places()
       places();
     });
   });
+}
+
+function excluirLocal (id) {
+  if (confirm('Tem certeza?')) {
+    $.ajax({
+      url: API_URL + `/locais/${id}.json`,
+      type: 'DELETE',
+      dataType: 'json',
+      success: (response) => {
+        places();
+      }
+    })
+  }
 }

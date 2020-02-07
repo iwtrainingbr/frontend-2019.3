@@ -35,7 +35,9 @@ function config()
           <tr>
             <td>${cadaTipo.nome}</td>
             <td>${cadaTipo.descricao}</td>
-            <td></td>
+            <td>
+              <button onclick="excluirTipo('${id}')" class="btn btn-danger">Excluir</button>
+            </td>
           </tr>
         `;
       }
@@ -79,4 +81,18 @@ function config()
       config();
     });
   });
+}
+
+
+function excluirTipo(id) {
+  if (confirm('Tem certeza?')) {
+    $.ajax({
+      url: API_URL + `/tipos/${id}.json`,
+      type: 'DELETE',
+      dataType: 'json',
+      success: (response) => {
+        config();
+      }
+    });
+  }
 }
