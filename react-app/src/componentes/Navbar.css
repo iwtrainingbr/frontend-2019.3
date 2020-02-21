@@ -1,0 +1,9 @@
+.navbar-link {
+  text-decoration: none;
+  color: #fff;
+}
+
+.navbar-link:hover {
+  color: #ccc;
+  text-decoration: none;
+}
