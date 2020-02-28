@@ -4,6 +4,8 @@ import {Card, CardContent, Typography, TextField, Divider, Button} from '@materi
 export default function NovaCategoria(props) {
   const [nome, setNome] = useState('');
   const [descricao, setDescricao] = useState('');
+  const [nomeComErro, setNomeComErro] = useState(false);
+  const [descComErro, setDescComErro] = useState(false);
 
   return (
     <div>
@@ -15,16 +17,41 @@ export default function NovaCategoria(props) {
 
           <form onSubmit={(event) => {
             event.preventDefault();
+
+            if (nome === '') {
+              setNomeComErro('Nome é obrigatório');
+              return;
+            }
+
+            if (descricao === '') {
+              setDescComErro('Descrição é obrigatória');
+              return;
+            }
+
             props.inserirCategoria(nome, descricao);
+
+            console.log(event);
           }}>
-            <TextField onChange={(event) => setNome(event.target.value)} style={{marginTop: 15}} variant="outlined" label="Nome" fullWidth />
+            <TextField
+              onChange={(event) => setNome(event.target.value)}
+              style={{marginTop: 15}}
+              variant="outlined"
+              label="Nome"
+              helperText={nomeComErro}
+              error={nomeComErro?true:false}
+              fullWidth />
 
             <TextField
-              onChange={(event) => setDescricao(event.target.value)}
+              onChange={(event) => {
+                setDescricao(event.target.value);
+                setDescComErro(false);
+              }}
               style={{marginTop: 15}}
               variant="outlined"
               label="Descrição"
               rows={4}
+              error={descComErro?true:false}
+              helperText={descComErro}
               multiline
               fullWidth
             />

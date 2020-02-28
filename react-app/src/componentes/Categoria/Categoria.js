@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import {Grid} from '@material-ui/core';
 import NovaCategoria from './NovaCategoria';
 import ListarCategoria from './ListarCategoria';
+import firebase from '../../config/firebase';
 
+const collection = firebase.firestore().collection("fn_categorias");
 
 export default class Categoria extends React.Component {
   constructor(props) {
@@ -15,12 +17,16 @@ export default class Categoria extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({
-      categorias: [
-        {nome: 1, descricao: 'A'},
-        {nome: 2, descricao: 'B'},
-        {nome: 3, descricao: 'C'},
-      ]
+    collection.get().then(response => {
+      let cats = [];
+
+      response.forEach(doc => {
+          cats.push(doc.data());
+      })
+
+      this.setState({
+        categorias: cats
+      })
     });
   }
 
@@ -29,6 +35,10 @@ export default class Categoria extends React.Component {
 
     this.setState({
       categorias: [...this.state.categorias, novaCategoria]
+    });
+
+    collection.add(novaCategoria).then(response => {
+
     });
   }
 
