@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Card, CardContent, Typography, TextField, Divider, Button} from '@material-ui/core';
 
-export default function NovaCategoria() {
+export default function NovaCategoria(props) {
+  const [nome, setNome] = useState('');
+  const [descricao, setDescricao] = useState('');
+
   return (
     <div>
       <Card>
@@ -10,10 +13,14 @@ export default function NovaCategoria() {
 
           <Divider style={{marginTop: 15, marginBottom: 15}}/>
 
-          <form>
-            <TextField style={{marginTop: 15}} variant="outlined" label="Nome" fullWidth />
+          <form onSubmit={(event) => {
+            event.preventDefault();
+            props.inserirCategoria(nome, descricao);
+          }}>
+            <TextField onChange={(event) => setNome(event.target.value)} style={{marginTop: 15}} variant="outlined" label="Nome" fullWidth />
 
             <TextField
+              onChange={(event) => setDescricao(event.target.value)}
               style={{marginTop: 15}}
               variant="outlined"
               label="Descrição"
@@ -22,7 +29,7 @@ export default function NovaCategoria() {
               fullWidth
             />
 
-            <Button style={{marginTop: 15}} color="primary" size="large" fullWidth variant="contained">
+            <Button type="submit" style={{marginTop: 15}} color="primary" size="large" fullWidth variant="contained">
               ENVIAR
             </Button>
           </form>

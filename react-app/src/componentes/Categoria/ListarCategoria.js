@@ -16,13 +16,7 @@ import {
   Edit as EditIcon
 } from '@material-ui/icons';
 
-const categorias = [
-  {nome: 1, descricao: 'A'},
-  {nome: 2, descricao: 'B'},
-  {nome: 3, descricao: 'C'},
-];
-
-export default function ListarCategoria() {
+export default function ListarCategoria(props) {
   return (
     <Card>
       <CardContent>
@@ -37,7 +31,7 @@ export default function ListarCategoria() {
             </TableHead>
             <TableBody>
               {
-                categorias.map(cat => {
+                props.categorias.map(cat => {
                   return (
                     <TableRow>
                       <TableCell>{cat.nome}</TableCell>

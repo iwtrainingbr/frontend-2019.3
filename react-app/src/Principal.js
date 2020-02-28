@@ -6,6 +6,7 @@ import Financas from './componentes/Financas/Financas';
 import Dashboard from './componentes/Dashboard';
 import PaginaNaoEncontrada from './componentes/PaginaNaoEncontrada';
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import Test from './Test.js';
 
 import './Principal.css';
 
@@ -20,6 +21,7 @@ export default function Principal() {
       <Switch>
         <Route path="/categoria" component={Categoria}/>
         <Route path="/financas" component={Financas}/>
+        <Route path="/teste" component={Test}/>
         <Route path="/" exact component={Dashboard}/>
         <Route path="/*" component={PaginaNaoEncontrada}/>
       </Switch>
