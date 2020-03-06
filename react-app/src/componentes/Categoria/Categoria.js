@@ -13,7 +13,6 @@ export default class Categoria extends React.Component {
     this.state = {
       categorias: [],
     };
-
   }
 
   componentDidMount() {
@@ -21,7 +20,10 @@ export default class Categoria extends React.Component {
       let cats = [];
 
       response.forEach(doc => {
-          cats.push(doc.data());
+          cats.push({
+            id: doc.id,
+            ...doc.data()
+          });
       })
 
       this.setState({
@@ -29,6 +31,16 @@ export default class Categoria extends React.Component {
       })
     });
   }
+
+  excluirCategoria = (id) => {
+    let restantes = this.state.categorias.filter(cadaCat => {
+      return cadaCat.id !== id;
+    });
+
+    this.setState({categorias: restantes});
+
+    collection.doc(id).delete();
+  };
 
   inserirCategoria = (nome, descricao) => {
     let novaCategoria = {nome: nome, descricao: descricao};
@@ -49,7 +61,7 @@ export default class Categoria extends React.Component {
           <NovaCategoria inserirCategoria={this.inserirCategoria}/>
         </Grid>
         <Grid item md={8}>
-          <ListarCategoria categorias={this.state.categorias}/>
+          <ListarCategoria excluirCategoria={this.excluirCategoria} categorias={this.state.categorias}/>
         </Grid>
       </Grid>
     );

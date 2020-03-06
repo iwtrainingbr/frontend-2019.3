@@ -29,8 +29,6 @@ export default function NovaCategoria(props) {
             }
 
             props.inserirCategoria(nome, descricao);
-
-            console.log(event);
           }}>
             <TextField
               onChange={(event) => setNome(event.target.value)}

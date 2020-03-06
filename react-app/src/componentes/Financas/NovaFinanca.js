@@ -11,6 +11,7 @@ import {
   InputLabel,
   MenuItem,
 } from '@material-ui/core';
+import InputMask from 'react-input-mask';
 
 export default function NovaFinanca() {
   return (
@@ -33,12 +34,18 @@ export default function NovaFinanca() {
               fullWidth
             />
 
-            <TextField
-              style={{marginTop: 15}}
-              variant="outlined"
-              label="Valor"
-              fullWidth
-            />
+
+            <InputMask mask="R$ \\9999" maskChar={" "}>
+              {(props) => {
+                  return <TextField
+                    variant="outlined"
+                    label="Valor"
+                    fullWidth
+                  />;
+              }}
+            </InputMask>
+
+
 
             <FormControl style={{marginTop: 15}} fullWidth variant="outlined">
               <InputLabel id="select-categoria">Categoria</InputLabel>
